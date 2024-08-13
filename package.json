@@ -1,0 +1,25 @@
+{
+  "name": "tebex-webhook-client",
+  "version": "1.0.0",
+  "description": "Library to easily handle Webhook events from your Tebex Store",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itsmaty/tebex-webhook-client.git"
+  },
+  "keywords": [
+    "tebex",
+    "tebex-store",
+    "webhook",
+    "library"
+  ],
+  "author": "@itsmaty - Matthias Nordgauer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/itsmaty/tebex-webhook-client/issues"
+  },
+  "homepage": "https://github.com/itsmaty/tebex-webhook-client#readme"
+}
