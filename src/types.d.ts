@@ -8,6 +8,12 @@ export interface ITebexWebhookClientOptions{
   ips?: string[];
 }
 
+export type ProcessRequestDataResponse = {
+  error: boolean;
+  status: number;
+  message: string;
+}
+
 export type TebexWebhookEvent = 
 'payment.completed' | 
 'payment.declined' | 
