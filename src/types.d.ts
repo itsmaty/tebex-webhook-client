@@ -5,7 +5,8 @@ export interface ITebexWebhookClientOptions{
   express?: Application | Router;
   port?: number;
   endpoint?: string,
-  ips?: string[];
+  ips?: string[],
+  disableExpress?: boolean
 }
 
 export type ProcessRequestDataResponse = {
