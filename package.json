@@ -4,7 +4,7 @@
   "description": "Library to easily handle Webhook events from your Tebex Store",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
