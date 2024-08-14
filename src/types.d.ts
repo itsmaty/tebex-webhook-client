@@ -19,12 +19,12 @@ export type ProcessRequestDataResponse = {
 export type TebexWebhookRequest = {
   id: string,
   type: TebexWebhookEventType,
-  subject: TebexWebhookRequestSubject,
+  subject: TebexWebhookRequestData,
 }
 
-export type TebexWebhookRequestSubject = any;
+export type TebexWebhookRequestData = any;
 
-export type TebexWebhookEventCallback = (eventData: TebexWebhookRequestSubject, rawBody: string) => void;
+export type TebexWebhookEventCallback = (eventData: TebexWebhookRequestData, rawBody: string) => void;
 
 export type TebexWebhookEventType = 
 'payment.completed' | 
