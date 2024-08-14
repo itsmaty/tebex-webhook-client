@@ -1,8 +1,8 @@
 import express from "express";
 import bodyParser from "body-parser";
-import { Application, Router } from "express";
+import { Application, Router, Request, Response } from "express";
 import CreateExpressServer from "./utils/CreateExpressServer";
-import { ITebexWebhookClientOptions } from "./types";
+import { ITebexWebhookClientOptions, ProcessRequestDataResponse } from "./types";
 
 export default class TebexWebhookClient {
 
@@ -72,9 +72,28 @@ export default class TebexWebhookClient {
 
     /* attach the router to the express app or router */
     this.express.use(Router);
-    
+
     /* register the endpoint on the router and provide the request handler */
     Router.post(this.endpoint, this.ReuquestHandler);
 
+  }
+
+  private async ReuquestHandler(Request: Request, Response: Response) {
+    /*
+      extract the ip, signature & raw body from the request
+      ts says that the headers can be strings | string[] | undefined
+      but for sure they can only be string | undefined
+      so we do as string because it gets checked for undefined later on in ProcessRequestData
+    */
+
+    const originIp: string = Request.headers['x-forwarded-for'] as string;
+    const signatureHeader: string = Request.headers['X-Signature'] as string;
+    const rawBody: string = Request.body;
+
+    /* await the data processing */
+    const response: ProcessRequestDataResponse = await this.ProcessRequestData(originIp, signatureHeader, rawBody);
+
+    /* send the response */
+    Response.status(response.status).send(response.message);
   }
 }
