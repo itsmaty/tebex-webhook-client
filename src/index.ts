@@ -25,8 +25,21 @@ export default class TebexWebhookClient {
   /* if logging/console prints should be enabled */
   private debugLog: boolean = false;
 
-  /* the callback functions/subscribers for the events */
-  private EventSubscribers: { [key in TebexWebhookEventType]: TebexWebhookEventCallback[] } | {} = {};
+  private EventSubscribers: { [key in TebexWebhookEventType]: TebexWebhookEventCallback[] } = {
+    'payment.completed': [],
+    'payment.declined': [],
+    'payment.refunded': [],
+    'payment.dispute.opened': [],
+    'payment.dispute.won': [],
+    'payment.dispute.lost': [],
+    'payment.dispute.closed': [],
+    'recurring-payment.started': [],
+    'recurring-payment.renewed': [],
+    'recurring-payment.ended': [],
+    'recurring-payment.cancellation.requested': [],
+    'recurring-payment.cancellation.aborted': [],
+    'validation.webhook': []
+  };
 
   constructor(options: ITebexWebhookClientOptions) {
 
