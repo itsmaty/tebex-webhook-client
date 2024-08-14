@@ -40,6 +40,18 @@ export default class TebexWebhookClient {
 
     /* save the secret in this instance */
     this.secret = options.secret;
+
+    /* check if express use should be diabled */
+    if (options.disableExpress) {
+
+      /*
+        if we dont want to use express server as request handler early return
+        now only ProcessRequestData can be used (together with for example a nextjs project)
+      */
+
+      return;
+    }
+
     
   }
 }
