@@ -98,7 +98,7 @@ export default class TebexWebhookClient {
   }
 
   public async ProcessRequestData(originIp: string, signatureHeader: string, rawBody: string): Promise<ProcessRequestDataResponse> {
-   
+
     /* validate if received args are not empty */
     if (!originIp || !signatureHeader || !rawBody) {
       return {
@@ -107,6 +107,15 @@ export default class TebexWebhookClient {
         message: '500 INTERNAL_SERVER_ERROR'
       }
     }
-    
+
+    /* check origin ip adress agains tebex´s ip adresses */
+    if (!this.ips.includes(originIp)) {
+      return {
+        error: true,
+        status: 401,
+        message: '401 UNAUTHORIZED'
+      }
+    }
+
   }
 }
