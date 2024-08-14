@@ -98,6 +98,15 @@ export default class TebexWebhookClient {
   }
 
   public async ProcessRequestData(originIp: string, signatureHeader: string, rawBody: string): Promise<ProcessRequestDataResponse> {
+   
+    /* validate if received args are not empty */
+    if (!originIp || !signatureHeader || !rawBody) {
+      return {
+        error: true,
+        status: 500,
+        message: '500 INTERNAL_SERVER_ERROR'
+      }
+    }
     
   }
 }
