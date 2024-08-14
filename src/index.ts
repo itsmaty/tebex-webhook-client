@@ -31,5 +31,15 @@ export default class TebexWebhookClient {
       /* if no options object was passed, throw an error */
       throw new Error('You need to pass an options object to the TebexWebhookClient');
     }
+
+    /* check if the secret was passed */
+    if (!options.secret) {
+      /* if no secret was passed, throw an error */
+      throw new Error('You set the `secret` property in the options object passd to TebexWebhookClient');
+    }
+
+    /* save the secret in this instance */
+    this.secret = options.secret;
+    
   }
 }
