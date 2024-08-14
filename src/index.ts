@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import { Application, Router, Request, Response } from "express";
+import { createHash, createHmac } from "node:crypto";
 import CreateExpressServer from "./utils/CreateExpressServer";
 import { ITebexWebhookClientOptions, ProcessRequestDataResponse } from "./types";
 
@@ -110,6 +111,27 @@ export default class TebexWebhookClient {
 
     /* check origin ip adress agains tebex´s ip adresses */
     if (!this.ips.includes(originIp)) {
+      return {
+        error: true,
+        status: 401,
+        message: '401 UNAUTHORIZED'
+      }
+    }
+
+    /* validate webhook signature */
+    /* calculate the body hash */
+    const bodyHash: string = createHash('sha256')
+      .update(rawBody, 'utf-8')
+      .digest('hex');
+
+    /* calculate the signature for the webhook */
+    const signature: string = createHmac('sha256', this.secret)
+      .update(bodyHash)
+      .digest('hex');
+
+    /* validate the calculated signature against the signature header */
+    if (signature !== signatureHeader) {
+      /* if webhook is no valid tebex webhook, return unauthorized */
       return {
         error: true,
         status: 401,
