@@ -59,6 +59,8 @@ export default class TebexWebhookClient {
     /* check if and custom endpoint is provided or if we use the default */
     this.endpoint = options.endpoint ?? this.endpoint;
 
+    /* check if the ip adresses have been overwitten */
+    this.ips = options.ips ?? this.ips;
 
   }
 }
