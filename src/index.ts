@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { Application, Router, Request, Response } from "express";
 import { createHash, createHmac } from "node:crypto";
 import CreateExpressServer from "./utils/CreateExpressServer";
-import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest, TebexWebhookEventCallback } from "./types";
+import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest, TebexWebhookRequestData, TebexWebhookEventCallback } from "./types";
 
 export default class TebexWebhookClient {
 
@@ -189,3 +189,5 @@ export default class TebexWebhookClient {
 
   }
 }
+
+export { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest, TebexWebhookRequestData, TebexWebhookEventCallback };
