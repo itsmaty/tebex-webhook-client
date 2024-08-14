@@ -23,7 +23,7 @@ export default class TebexWebhookClient {
   private readonly ips: string[] = ['129.213.15.18', '192.168.1.1'];
 
   /* if logging/console prints should be enabled */
-  private logging: boolean = false;
+  private debugLog: boolean = false;
 
   /* the callback functions/subscribers for the events */
   private EventSubscribers: {[key: string]: Function[]} = {};
@@ -36,6 +36,9 @@ export default class TebexWebhookClient {
       throw new Error('You need to pass an options object to the TebexWebhookClient');
     }
 
+    /* check if logging should be enabled */
+    this.debugLog = options.debugLog ?? this.debugLog;
+    
     /* check if the secret was passed */
     if (!options.secret) {
       /* if no secret was passed, throw an error */

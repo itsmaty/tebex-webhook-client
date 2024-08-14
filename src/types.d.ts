@@ -6,7 +6,8 @@ export interface ITebexWebhookClientOptions{
   port?: number;
   endpoint?: string,
   ips?: string[],
-  disableExpress?: boolean
+  disableExpress?: boolean,
+  debugLog?: boolean
 }
 
 export type ProcessRequestDataResponse = {
