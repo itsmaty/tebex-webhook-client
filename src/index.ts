@@ -25,6 +25,11 @@ export default class TebexWebhookClient {
   private EventSubscribers: {[key: string]: Function[]} = {};
 
   constructor(options: ITebexWebhookClientOptions) {
-    
+
+    /* check if the options object was passed */
+    if (!options) {
+      /* if no options object was passed, throw an error */
+      throw new Error('You need to pass an options object to the TebexWebhookClient');
+    }
   }
 }
