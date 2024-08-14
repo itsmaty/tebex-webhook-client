@@ -56,5 +56,9 @@ export default class TebexWebhookClient {
     /* check if an express instance is provided or if we have to create one */
     this.express = options.express ?? CreateExpressServer(options.port ?? this.port);
 
+    /* check if and custom endpoint is provided or if we use the default */
+    this.endpoint = options.endpoint ?? this.endpoint;
+
+
   }
 }
