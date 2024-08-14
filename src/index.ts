@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { Application, Router, Request, Response } from "express";
 import { createHash, createHmac } from "node:crypto";
 import CreateExpressServer from "./utils/CreateExpressServer";
-import { ITebexWebhookClientOptions, ProcessRequestDataResponse } from "./types";
+import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookRequest } from "./types";
 
 export default class TebexWebhookClient {
 
@@ -138,6 +138,9 @@ export default class TebexWebhookClient {
         message: '401 UNAUTHORIZED'
       }
     }
+
+    /* parse the body with json */
+    const parsedBody: TebexWebhookRequest = JSON.parse(rawBody);
 
   }
 }
