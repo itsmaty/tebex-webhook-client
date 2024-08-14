@@ -15,6 +15,12 @@ export type ProcessRequestDataResponse = {
   message: string;
 }
 
+export type TebexWebhookRequest = {
+  id: string,
+  type: TebexWebhookEventType,
+  subject: any,
+}
+
 export type TebexWebhookEventType = 
 'payment.completed' | 
 'payment.declined' | 
