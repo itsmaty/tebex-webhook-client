@@ -1,3 +1,5 @@
+import express from "express";
+import bodyParser from "body-parser";
 import { Application, Router } from "express";
 import CreateExpressServer from "./utils/CreateExpressServer";
 import { ITebexWebhookClientOptions } from "./types";
@@ -61,6 +63,18 @@ export default class TebexWebhookClient {
 
     /* check if the ip adresses have been overwitten */
     this.ips = options.ips ?? this.ips;
+
+    /* create an express router */
+    const Router: Router = express.Router();
+    
+    /* attach the body parser middleware to the router */
+    Router.use(bodyParser.raw());
+
+    /* attach the router to the express app or router */
+    this.express.use(Router);
+    
+    /* register the endpoint on the router and provide the request handler */
+    Router.post(this.endpoint, this.ReuquestHandler);
 
   }
 }
