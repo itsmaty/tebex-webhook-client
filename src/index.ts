@@ -153,5 +153,19 @@ export default class TebexWebhookClient {
       }
     }
 
+    /* now check if we have any registered subscribers for the event */
+    if (this.EventSubscribers[parsedBody.type]) {
+      /* if we have any subscribers, call them */
+      this.EventSubscribers[parsedBody.type].forEach(callback => callback(parsedBody.subject, rawBody));
+    }
+    
+
+    /* if everything went fine, return 200 ok */
+    return {
+      error: false,
+      status: 200,
+      message: '200 OK'
+    }
+
   }
 }
