@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { Application, Router, Request, Response } from "express";
 import { createHash, createHmac } from "node:crypto";
 import CreateExpressServer from "./utils/CreateExpressServer";
-import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookRequest } from "./types";
+import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest } from "./types";
 
 export default class TebexWebhookClient {
 
@@ -77,6 +77,10 @@ export default class TebexWebhookClient {
     /* register the endpoint on the router and provide the request handler */
     Router.post(this.endpoint, this.ReuquestHandler);
 
+  }
+
+  public Subscribe(EventName: TebexWebhookEventType, Callback: Function) {
+    this.EventSubscribers[EventName].push(Callback);
   }
 
   private async ReuquestHandler(Request: Request, Response: Response) {
