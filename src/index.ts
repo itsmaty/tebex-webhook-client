@@ -1,4 +1,5 @@
 import { Application, Router } from "express";
+import CreateExpressServer from "./utils/CreateExpressServer";
 import { ITebexWebhookClientOptions } from "./types";
 
 export default class TebexWebhookClient {
@@ -52,6 +53,8 @@ export default class TebexWebhookClient {
       return;
     }
 
-    
+    /* check if an express instance is provided or if we have to create one */
+    this.express = options.express ?? CreateExpressServer(options.port ?? this.port);
+
   }
 }
