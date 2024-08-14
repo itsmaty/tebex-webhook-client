@@ -96,4 +96,8 @@ export default class TebexWebhookClient {
     /* send the response */
     Response.status(response.status).send(response.message);
   }
+
+  public async ProcessRequestData(originIp: string, signatureHeader: string, rawBody: string): Promise<ProcessRequestDataResponse> {
+    
+  }
 }
