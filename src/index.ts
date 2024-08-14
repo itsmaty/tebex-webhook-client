@@ -142,5 +142,16 @@ export default class TebexWebhookClient {
     /* parse the body with json */
     const parsedBody: TebexWebhookRequest = JSON.parse(rawBody);
 
+    /* check if we have a validation webhook */
+    if (parsedBody.type == 'validation.webhook') {
+
+      /* if we have a validation webhook, return the validation response */
+      return {
+        error: false,
+        status: 200,
+        message: JSON.stringify({id: parsedBody.id})
+      }
+    }
+
   }
 }
