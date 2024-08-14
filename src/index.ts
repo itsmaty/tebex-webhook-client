@@ -3,7 +3,7 @@ import bodyParser from "body-parser";
 import { Application, Router, Request, Response } from "express";
 import { createHash, createHmac } from "node:crypto";
 import CreateExpressServer from "./utils/CreateExpressServer";
-import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest } from "./types";
+import { ITebexWebhookClientOptions, ProcessRequestDataResponse, TebexWebhookEventType, TebexWebhookRequest, TebexWebhookEventCallback } from "./types";
 
 export default class TebexWebhookClient {
 
@@ -26,7 +26,7 @@ export default class TebexWebhookClient {
   private debugLog: boolean = false;
 
   /* the callback functions/subscribers for the events */
-  private EventSubscribers: {[key: string]: Function[]} = {};
+  private EventSubscribers: { [key in TebexWebhookEventType]: TebexWebhookEventCallback[] } | {} = {};
 
   constructor(options: ITebexWebhookClientOptions) {
 
@@ -38,7 +38,7 @@ export default class TebexWebhookClient {
 
     /* check if logging should be enabled */
     this.debugLog = options.debugLog ?? this.debugLog;
-    
+
     /* check if the secret was passed */
     if (!options.secret) {
       /* if no secret was passed, throw an error */
@@ -82,7 +82,7 @@ export default class TebexWebhookClient {
 
   }
 
-  public Subscribe(EventName: TebexWebhookEventType, Callback: Function) {
+  public Subscribe(EventName: TebexWebhookEventType, Callback: TebexWebhookEventCallback) {
     this.EventSubscribers[EventName].push(Callback);
   }
 
