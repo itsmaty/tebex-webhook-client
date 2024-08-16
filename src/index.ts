@@ -160,7 +160,16 @@ export default class TebexWebhookClient {
     }
 
     /* parse the body with json */
-    const parsedBody: TebexWebhookRequest = JSON.parse(rawBody);
+    let parsedBody: TebexWebhookRequest;
+    try {
+      parsedBody = JSON.parse(rawBody);
+    } catch (error: any) {
+      return {
+        error: true,
+        status: 400,
+        message: '400 BAD_REQUEST'
+      }
+    }
 
     /* check if we have a validation webhook */
     if (parsedBody.type == 'validation.webhook') {
