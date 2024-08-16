@@ -25,6 +25,7 @@ export default class TebexWebhookClient {
   /* if logging/console prints should be enabled */
   private debugLog: boolean = false;
 
+  /* map for events names to an respective array of subscriber callback functions */
   private EventSubscribers: { [key in TebexWebhookEventType]: TebexWebhookEventCallback[] } = {
     'payment.completed': [],
     'payment.declined': [],
