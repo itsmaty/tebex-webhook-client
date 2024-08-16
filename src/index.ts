@@ -171,6 +171,15 @@ export default class TebexWebhookClient {
       }
     }
 
+    /* check if all fields for TebexWebhookRequest are present */
+    if (!parsedBody.type || !parsedBody.id || !parsedBody.subject) {
+      return {
+        error: true,
+        status: 400,
+        message: '400 BAD_REQUEST'
+      }
+    }
+
     /* check if we have a validation webhook */
     if (parsedBody.type == 'validation.webhook') {
 
