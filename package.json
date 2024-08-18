@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Library to easily handle Webhook events from your Tebex Store",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "build": "tsc"
   },
