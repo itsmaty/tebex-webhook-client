@@ -96,6 +96,12 @@ export default class TebexWebhookClient {
 
   }
 
+  private DebugLog(message: string) {
+    if (this.debugLog) {
+      console.log("[DEBUG]",message);
+    }
+  }
+
   public Subscribe(EventName: TebexWebhookEventType, Callback: TebexWebhookEventCallback) {
     this.EventSubscribers[EventName].push(Callback);
   }
