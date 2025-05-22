@@ -1,9 +1,9 @@
-# IN DEVELOPMENT
+# IN DEVELOPMENT !!!
 
 This library is intended to simplify the use of your Tebex Store´s Webhook Events.
 It provides you with an simple API to subscribe to events and does all the heavy lifting like validation, ip-locking and signature verification for you.
 
-# Usage
+# Usage (not working yet, just a draft)
 ## Installation
 ### 1. Install the library
 To install the library with npm run the following command
@@ -83,10 +83,10 @@ You have to provide the following parameters:
 | signature  | string  | yes | none | The `X-Signature` header of the request.<br>This header can´t be trusted if you have an untrusted proxy. |
 | rawBody  | string  | yes | none | The raw body of the request |
 
-Make sure to actually privide the raw body as text, if the body was parsed or somehow otherwise altered it can lead to an invalidating the signature and therefore failing teh request.
+Make sure to actually provide the raw body as text, if the body was parsed or somehow otherwise altered it can lead to an invalidating the signature and therefore failing the request.
 
 # FAQ
-## How can i use SSL/HTTPS
+## How can I use SSL/HTTPS
 In my opinion ssl/https encryption is not the job of an application itself and especially not the one of a library.
 You should use a reverse proxy like nginx or apache to handle ssl encryption.
 
@@ -95,20 +95,18 @@ Well, there is none.
 This is a library where you have to add your own logic to make it usefuel, so there can´t be a prebuild image.
 But of course you can host the build the application you build with this library as a docker container.
 
-## Why do you use express, its so bloated?
-Well, for the usecase in this library express is probably not the beste choice.
-But when i was developing this i wanted to move fast.
-Its planned to move it to native nodejs in the future.
+## Why do you use express?
+Its planned to move it to native nodejs apis.
 
 
 # ToDo
 - Complete readme
-- Correctly name types and interfaces (check when to use types and interfaces)
-- Create proper Interfaces for all event subjects
-- Remove express and use native nodejs instead
-- Import @
-- Create logging
-- add eslint&prettier
+- Correctly name types and interfaces
+- Create proper Interfaces for all event types
+- Remove express and use native nodejs apis instead
+- Import alias @ for cleaner code
+- console log and error messages
+- add linter
 - add tests
 - add documentation / wiki page
 - add github workflows
